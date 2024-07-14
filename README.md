@@ -10,27 +10,6 @@ Este proyecto es un sistema web para gestionar y visualizar los fixtures, catego
 - **Filtros**: Los usuarios pueden filtrar los fixtures por categoría y fixture específico.
 - **Seguridad**: El sistema requiere inicio de sesión para administrar los fixtures.
 
-## Estructura del proyecto
-
-/juegos_ucsi_2024
-|-- /assets
-| |-- /css
-| |-- fixture.css
-| |-- forms.css
-|-- /db
-| |-- db_connection.php
-|-- /fixture
-| |-- agregar_fixture.php
-| |-- listar_fixture.php
-| |-- eliminar_todos_fixture.php
-|-- /noche_inaugural
-| |-- agregar_evento.php
-| |-- listar_eventos.php
-|-- index.html
-|-- README.md
-
-bash
-
 
 ## Instalación
 
@@ -79,50 +58,6 @@ Uso
 Base de datos
 Esquema de la base de datos
 
-sql
-
-CREATE TABLE `categorias` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-);
-
-CREATE TABLE `fixtures` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-);
-
-CREATE TABLE `fixture` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fecha` date NOT NULL,
-  `hora` time NOT NULL,
-  `equipo1` varchar(255) NOT NULL,
-  `equipo2` varchar(255) NOT NULL,
-  `score1` int(11) NOT NULL,
-  `score2` int(11) NOT NULL,
-  `categoria_id` int(11) NOT NULL,
-  `fixture_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  FOREIGN KEY (`categoria_id`) REFERENCES `categorias`(`id`),
-  FOREIGN KEY (`fixture_id`) REFERENCES `fixtures`(`id`)
-);
-
-CREATE TABLE `eventos_noche_inaugural` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) NOT NULL,
-  `descripcion` text NOT NULL,
-  `hora` time NOT NULL,
-  PRIMARY KEY (`id`)
-);
-
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `role` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-);
 
 Contribución
 
