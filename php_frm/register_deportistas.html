@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Deportista - Juegos UCSI 2024</title>
+    <link rel="stylesheet" href="../assets/css/forms.css">
+</head>
+<body>
+    <form action="../php /register_deportista.php" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+        
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" name="apellido" required>
+        
+        <label for="edad">Edad:</label>
+        <input type="number" id="edad" name="edad" required>
+        
+        <label for="numero_cedula">Número de Cédula:</label>
+        <input type="text" id="numero_cedula" name="numero_cedula" required>
+        
+        <label for="universidad">Universidad:</label>
+        <select id="universidad" name="universidad" required>
+            <option value="UCSI">UCSI</option>
+            <option value="FCA">FCA</option>
+            <option value="UNA">UNA</option>
+        </select>
+        
+        <label for="numero_remera">Número de Remera:</label>
+        <input type="text" id="numero_remera" name="numero_remera" required>
+        
+        <label for="modalidades">Número de modalidades:</label>
+        <select id="modalidades" name="modalidades" required onchange="updateCategories()">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        
+        <div id="categories-container">
+            <div class="category-field">
+                <label for="categoria1">Categoría 1:</label>
+                <select id="categoria1" name="categoria1" required>
+                    <option value="handball">Handball</option>
+                    <option value="futsal">Futsal</option>
+                    <option value="futbol">Fútbol de campo</option>
+                    <option value="basket">Basket</option>
+                    <option value="volley">Volley</option>
+                </select>
+            </div>
+        </div>
+        
+        <input type="submit" value="Registrar Deportista">
+    </form>
+    <script>
+        function updateCategories() {
+            const container = document.getElementById('categories-container');
+            const numberOfCategories = document.getElementById('modalidades').value;
+            
+            // Limpiar las categorías existentes
+            container.innerHTML = '';
+            
+            for (let i = 1; i <= numberOfCategories; i++) {
+                const categoryField = document.createElement('div');
+                categoryField.classList.add('category-field');
+                
+                const label = document.createElement('label');
+                label.setAttribute('for', `categoria${i}`);
+                label.textContent = `Categoría ${i}:`;
+                
+                const select = document.createElement('select');
+                select.setAttribute('id', `categoria${i}`);
+                select.setAttribute('name', `categoria${i}`);
+                select.setAttribute('required', true);
+                
+                const options = ['handball', 'futsal', 'futbol', 'basket', 'volley'];
+                options.forEach(optionValue => {
+                    const option = document.createElement('option');
+                    option.setAttribute('value', optionValue);
+                    option.textContent = optionValue.charAt(0).toUpperCase() + optionValue.slice(1);
+                    select.appendChild(option);
+                });
+                
+                categoryField.appendChild(label);
+                categoryField.appendChild(select);
+                container.appendChild(categoryField);
+            }
+        }
+    </script>
+</body>
+</html>

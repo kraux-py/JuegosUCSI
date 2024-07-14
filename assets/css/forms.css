@@ -1,0 +1,78 @@
+
+/* Estilos generales para formularios */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #007BFF;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="number"],
+form select {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+form input[type="submit"] {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    background: #0056b3;
+}
+
+/* Estilos específicos para campos de categoría */
+.category-field {
+    margin-bottom: 1rem;
+}
+
+.category-field label {
+    margin-bottom: 0.25rem;
+}
+
+.category-field select {
+    width: calc(100% - 1rem);
+}
+
+form .info-text {
+    font-size: 0.875rem;
+    color: #555;
+    margin-bottom: 1rem;
+}

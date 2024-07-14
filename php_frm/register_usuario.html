@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="../assets/css/forms.css">
+<form action="../php /register_user.php" method="post">
+    <label for="username">Nombre de usuario:</label>
+    <input type="text" id="username" name="username" required>
+    
+    <label for="password">Contraseña:</label>
+    <input type="password" id="password" name="password" required>
+    
+    <label for="role">Rol:</label>
+    <select id="role" name="role" required>
+        <option value="admin">Administrador</option>
+        <option value="delegado">Delegado</option>
+    </select>
+    
+    <input type="submit" value="Registrar">
+    <a href="../php /dashboard.php" class="button">Volver al Dashboard</a>
+</form>
+<style>.button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #007BFF;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}</style>

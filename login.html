@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuario y Login Admin</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="css/login_admin.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // No agregar 'sign-up-mode' a la clase 'container' para iniciar en el formulario de inicio de sesión
+        });
+
+        function showCategoryComment() {
+            var category = document.getElementById("category").value;
+            var commentBox = document.getElementById("category_comment");
+            if (category === "Otros") {
+                commentBox.style.display = "block";
+            } else {
+                commentBox.style.display = "none";
+            }
+        }
+
+        function validateForm() {
+            var termsCheckbox = document.getElementById("terms");
+            if (!termsCheckbox.checked) {
+                alert("Debes aceptar los términos y condiciones para registrar el stand.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="forms-container">
+            <div class="signin-signup">
+                <form action="php /login.php" method="post" class="sign-in-form">
+                    <h2 class="title">Iniciar Sesión</h2>
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" name="username" placeholder="Usuario" required>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" name="password" placeholder="Contraseña" required>
+                    </div>
+                    <input type="submit" value="Login" class="btn solid">
+                </form>
+                
+            </div>
+        </div>
+        <div class="panels-container">
+            <div class="panel left-panel">
+                <img src="images/register.svg" class="image" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
