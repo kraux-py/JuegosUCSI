@@ -72,6 +72,7 @@ if (!$result) {
             </select>
             
             <input type="submit" value="Filtrar">
+            <a href="javascript:history.back()" class="button">Volver</a>
         </form>
     </div>
     

@@ -41,7 +41,14 @@ $role = $user['role'];
                     </h1>
                 </div>
             </div>
-            
+            <div class="app-header-actions">
+                <button class="user-profile">
+                    <span><?php echo $_SESSION['username']; ?></span>
+                    <span>
+                        <img src="https://assets.codepen.io/285131/almeria-avatar.jpeg" />
+                    </span>
+                </button>
+            </div>
             <div class="app-header-mobile">
                 <button class="icon-button large">
                     <i class="ph-list"></i>
@@ -59,9 +66,18 @@ $role = $user['role'];
                     <a href="../php_frm/register_usuario.html">
                         <i class="ph-check-square"></i>
                         <span>Agregar Usuarios</span>
-                    </a><a href="listar_deportistas.php">
+                    </a>
+                    <a href="listar_deportistas.php">
                         <i class="ph-check-square"></i>
                         <span>Listado de Jugadores</span>
+                    </a>
+                    <a href="../fixture/admin.php">
+                        <i class="ph-plus"></i>
+                        <span>Crear Fixture</span>
+                    </a>
+                    <a href="../noche_inaugural/agregar_evento.php">
+                        <i class="ph-plus"></i>
+                        <span>Noche Inaugural</span>
                     </a>
                     
                     <?php } ?>
@@ -71,6 +87,10 @@ $role = $user['role'];
                         <span>Registrar Deportistas</span>
                     </a>
                     <?php } ?>
+                    <a href="listar_deportistas.php">
+                        <i class="ph-check-square"></i>
+                        <span>Listado de Jugadores</span>
+                    </a>
                     <a href="logout.php">
                         <i class="ph-sign-out"></i>
                         <span>Cerrar Sesión</span>

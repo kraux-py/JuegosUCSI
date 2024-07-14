@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap');
+
+body {
+  background: #00002E;
+  color: #6098FF;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Alinea al principio del contenedor */
+  height: 100vh; /* Altura completa de la ventana */
+  margin: 0;
+  padding-top: 20px; /* Añadir un poco de espacio arriba */
+}
+
+h1 {
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+  color: #6098FF;
+}
+
+.container {
+  text-align: center;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn {
+  padding: 15px 100px;
+  margin: 10px 0; /* Espaciado entre botones */
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  position: relative;
+  text-decoration: none;
+  display: inline-block;
+  background: transparent;
+  border: 1px solid #6098FF;
+  overflow: hidden;
+  transition: all 0.4s ease-in-out;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  bottom: 50%;
+  left: 0px;
+  width: 100%;
+  height: 1px;
+  background: #6098FF;
+  display: block;
+  transform-origin: left top;
+  transform: scale(0, 1);
+  transition: transform 0.4s cubic-bezier(1, 0, 0, 1);
+}
+
+.btn:hover::before {
+  transform-origin: right top;
+  transform: scale(1, 1);
+}
+
+.btn:hover {
+  color: #6098FF;
+  background-color: #fff;
+}
