@@ -36,7 +36,7 @@ bash
 
 1. Clonar el repositorio:
 
-```bash
+
 git clone https://github.com/tu-usuario/juegos_ucsi_2024.git
 
     Configurar la base de datos:
@@ -133,8 +133,3 @@ Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE
 Contacto
 
 Para cualquier consulta, puedes contactarme en [tu-email@example.com].
-
-css
-
-
-Este README incluye una descripción general del proyecto, su estructura, instrucciones de instalación, uso, esquema de la base de datos y detalles sobre cómo contribuir. Puedes personalizarlo según tus necesidades específicas y añadir más detalles si lo consideras necesario.
