@@ -1,98 +1,140 @@
 # Juegos UCSI 2024
 
-Este proyecto es un sistema web para gestionar la inscripción y seguimiento de deportistas en los Juegos UCSI 2024. Los administradores pueden registrar usuarios, delegados, y deportistas, mientras que los delegados pueden registrar deportistas en diferentes categorías deportivas.
+Este proyecto es un sistema web para gestionar y visualizar los fixtures, categorías y eventos de los Juegos UCSI 2024, incluyendo la noche inaugural. Está desarrollado en PHP y utiliza MySQL como base de datos.
 
-## Tecnologías Utilizadas
+## Características
 
-- PHP
-- MySQL
-- HTML/CSS
-- JavaScript
+- **Gestión de fixtures**: Los administradores pueden agregar, editar y eliminar partidos en diferentes categorías y fixtures.
+- **Visualización de fixtures**: Los usuarios pueden ver los fixtures según la categoría seleccionada.
+- **Eventos de la noche inaugural**: Un apartado especial para la noche inaugural que se muestra de forma destacada en el apartado de fixtures.
+- **Filtros**: Los usuarios pueden filtrar los fixtures por categoría y fixture específico.
+- **Seguridad**: El sistema requiere inicio de sesión para administrar los fixtures.
 
-## Funcionalidades
+## Estructura del proyecto
 
-- Sistema de autenticación (login/logout)
-- Registro de usuarios (administradores y delegados)
-- Registro de deportistas
-- Listado de deportistas con filtros por universidad y categoría
-- Panel de control para administradores
-- Verificación de duplicados en la inscripción de deportistas
+/juegos_ucsi_2024
+|-- /assets
+| |-- /css
+| |-- fixture.css
+| |-- forms.css
+|-- /db
+| |-- db_connection.php
+|-- /fixture
+| |-- agregar_fixture.php
+| |-- listar_fixture.php
+| |-- eliminar_todos_fixture.php
+|-- /noche_inaugural
+| |-- agregar_evento.php
+| |-- listar_eventos.php
+|-- index.html
+|-- README.md
+
+bash
+
 
 ## Instalación
 
-### Prerrequisitos
+1. Clonar el repositorio:
 
-- Servidor web (Apache, Nginx, etc.)
-- PHP >= 7.4
-- MySQL
-- phpMyAdmin (opcional, pero recomendado)
+```bash
+git clone https://github.com/tu-usuario/juegos_ucsi_2024.git
 
-### Instrucciones
+    Configurar la base de datos:
 
-1. Clona este repositorio en tu servidor local:
-    ```bash
-    git clone https://github.com/tu_usuario/juegos-ucsi-2024.git
-    ```
+    Crear una base de datos MySQL llamada juegos_ucsi_2024.
+    Importar el archivo juegos_ucsi_2024.sql para crear las tablas necesarias.
 
-2. Navega a la carpeta del proyecto:
-    ```bash
-    cd juegos-ucsi-2024
-    ```
+    Configurar la conexión a la base de datos:
 
-3. Configura tu base de datos:
-    - Crea una base de datos en MySQL llamada `juegos_ucsi_2024`.
-    - Importa el archivo `juegos_ucsi_2024.sql` en tu base de datos. Puedes hacerlo mediante phpMyAdmin o la línea de comandos:
-        ```bash
-        mysql -u tu_usuario -p juegos_ucsi_2024 < juegos_ucsi_2024.sql
-        ```
+    Editar el archivo /db/db_connection.php con las credenciales de tu base de datos.
 
-4. Configura la conexión a la base de datos en el archivo `php/db_connection.php`:
-    ```php
-    <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "juegos_ucsi_2024";
+php
 
-    // Crear la conexión
-    $conn = new mysqli($servername, $username, $password, $dbname);
+<?php
+$servername = "localhost";
+$username = "tu_usuario";
+$password = "tu_contraseña";
+$dbname = "juegos_ucsi_2024";
 
-    // Verificar la conexión
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    ?>
-    ```
+// Crear conexión
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-5. Asegúrate de que tu servidor web esté configurado para servir el proyecto. Si estás utilizando Apache, asegúrate de tener un archivo `.htaccess` para la redirección de URL si es necesario.
+// Verificar conexión
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
+}
+?>
 
-## Uso
+    Ejecutar el servidor:
 
-1. Accede a la página de inicio del proyecto mediante tu navegador web:
-    ```
-    http://localhost/juegos-ucsi-2024/
-    ```
+    Colocar los archivos en el directorio de tu servidor web (e.g., htdocs para XAMPP).
+    Iniciar el servidor web (e.g., Apache).
 
-2. Registra un administrador inicial mediante la interfaz de usuario.
+Uso
 
-3. Usa el panel de control para registrar delegados y deportistas.
+    Inicio de sesión: Acceder a index.html para iniciar sesión.
+    Agregar fixtures: Los administradores pueden agregar fixtures y eventos de la noche inaugural desde los respectivos formularios.
+    Visualizar fixtures y eventos: Los usuarios pueden filtrar y ver los fixtures y eventos según la categoría seleccionada.
 
-4. Filtra y visualiza los deportistas registrados mediante los filtros de universidad y categoría.
+Base de datos
+Esquema de la base de datos
 
-## Contribuciones
+sql
 
-¡Las contribuciones son bienvenidas! Si deseas contribuir, sigue estos pasos:
+CREATE TABLE `categorias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+);
 
-1. Haz un fork de este repositorio.
-2. Crea una nueva rama para tu función (`git checkout -b feature/nueva-funcion`).
-3. Realiza tus cambios y haz commit (`git commit -am 'Agrega nueva función'`).
-4. Haz push a la rama (`git push origin feature/nueva-funcion`).
-5. Crea un nuevo Pull Request.
+CREATE TABLE `fixtures` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+);
 
-## Licencia
+CREATE TABLE `fixture` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` date NOT NULL,
+  `hora` time NOT NULL,
+  `equipo1` varchar(255) NOT NULL,
+  `equipo2` varchar(255) NOT NULL,
+  `score1` int(11) NOT NULL,
+  `score2` int(11) NOT NULL,
+  `categoria_id` int(11) NOT NULL,
+  `fixture_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`categoria_id`) REFERENCES `categorias`(`id`),
+  FOREIGN KEY (`fixture_id`) REFERENCES `fixtures`(`id`)
+);
 
-Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para obtener más información.
+CREATE TABLE `eventos_noche_inaugural` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) NOT NULL,
+  `descripcion` text NOT NULL,
+  `hora` time NOT NULL,
+  PRIMARY KEY (`id`)
+);
 
-## Contacto
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+);
 
-Si tienes preguntas o sugerencias, no dudes en abrir un issue o contactarme a través de [tu_email@example.com](mailto:tu_email@example.com).
+Contribución
+
+Las contribuciones son bienvenidas. Por favor, realiza un fork del repositorio y crea una nueva rama para tus cambios. Luego, envía una solicitud de pull con una descripción detallada de tus modificaciones.
+Licencia
+
+Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE para más detalles.
+Contacto
+
+Para cualquier consulta, puedes contactarme en [tu-email@example.com].
+
+css
+
+
+Este README incluye una descripción general del proyecto, su estructura, instrucciones de instalación, uso, esquema de la base de datos y detalles sobre cómo contribuir. Puedes personalizarlo según tus necesidades específicas y añadir más detalles si lo consideras necesario.
